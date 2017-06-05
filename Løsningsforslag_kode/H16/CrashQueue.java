@@ -1,4 +1,4 @@
-
+// OPPGAVE 6
 public class CrashQueue<T> implements IQueue<T> {
 
   protected List<T> queue;

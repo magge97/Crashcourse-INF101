@@ -1,4 +1,4 @@
-
+// OPPGAVE 7
 public interface IPriorityQueue<T extends Comparable<T>> extends IQueue<T> {
 
   /**
