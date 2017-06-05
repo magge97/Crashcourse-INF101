@@ -1,0 +1,18 @@
+\frametitle{Oppg. 3 - V15}
+Det klassiske spillet \textit{Space Invaders} ble utviklet av Tomohiro Nishikado i 1978. Spilleren styrer et lite romskip nederst på skjermen, som kan beveges til høyre og venstre, og skyte mot de invaderende romvesene, som kommer på rekke og rad nedover skjermen. Spillet er tapt når romvesene når helt ned på skjermen, eller spilleren blir truffet. Vi skal lage en noe forenklet utgave.
+\framebreak
+
+a) Vi skal modellere alle tingene i spillet ved hjelp av rektangler. Et rektangel har en posisjon (\verb|IPosition|), en bredde og en høyde. Se kode for \verb|IPosition|, \verb|Position| og \verb|IRectangle| i vedlegget. Lag en klasse \verb|Rectangle implements IRectangle|, og definer feltvariabler og konstruktør som tar posisjon, bredde og høyde. Sjekk at bredden og høyden er $\geq 0$, og kast en passende exception om det ikke er tilfelle.
+\framebreak
+
+b) Rektanglene våre skal være \textit{immutable}, dvs. at de ikke kan endres etter at de er
+opprettet. Metodene \verb|move()| og \verb|moveTo()| må derfor returnere nye rektangler. Implementer
+disse to metodene.
+\framebreak
+
+c) Implementer metodene contains(\verb|IPosition|) og \verb|contains(IRectangle)| i \verb|Rectangle|.
+\framebreak
+
+d) Skriv minst to JUnit-tester for hver av de to \verb|contains()|-metodene i \verb|Rectangle|, som
+sjekker funksjonaliteten på noen enkle eksempler. Skriv også to tester for \verb|overlaps()|.
+

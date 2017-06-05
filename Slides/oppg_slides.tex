@@ -1,0 +1,191 @@
+\documentclass[xcolor=dvipsnames]{beamer}
+\usepackage[latin1]{inputenc} % For ? kunne skrive norske tegn
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usetheme{CambridgeUS}
+\usecolortheme{spruce}
+\usepackage{lmodern}
+\usepackage{parskip}
+\setlength{\parskip}{\baselineskip} 
+\usepackage{verbatim}
+
+\begin{document}
+\AtBeginSection[]
+{
+	\begin{frame}
+		\vfill
+		\centering
+		\begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+		\usebeamerfont{title}\insertsectionhead\par%
+  		\end{beamercolorbox}
+  		\vfill
+ 	 \end{frame}
+}
+
+\title[INF101] % (optional, only for long titles)
+{Kræsjkurs INF101}
+\subtitle{Oppgavegjennomgang}
+\author[Forfatter, Magnus Øian] % (optional, for multiple authors)
+{}
+\date[2017] % (optional)
+{2017}
+\subject{Computer Science}
+
+\maketitle
+
+\begin{frame}[fragile, allowframebreaks]
+\frametitle{Oppg. 2 - H15}
+Et \textit{sett} (eller \textit{mengde}) er en uordnet samling av unike elementer, til forskjell fra f.eks. en list, hvor elementene har en rekkefølge, og eventuelt kan forekomme flere ganger. Det vil si:
+\begin{itemize}
+\item Lagringsrekkefølgen på elementene spiller ingen rolle, to sett er like om de inneholde de samme elementene uavhengig av hvordan de er laget.
+\item Å sette inn et element som allerede finnes i settet har ingen effekt.
+\end{itemize}
+I vedlegget finner du \verb|ICollection|, et grensensitt for generelle samlinger av elementer, og en implementasjon av dette, \verb|MyCollection|.
+\framebreak
+
+a) Vi skal nå lage grensensittet \verb|ISet| for sett-samlinger, og klassen \verb|MySet|, som implementerer en sett datastrukturer. 
+
+Aller først, gå igjennom \verb|ICollection| og vurder om:
+\begin{itemize}
+\item metodene som er der også passer bra for sett
+\item om det er noen av metodene du mener ikke passer bra
+\item noe av dokumentasjonen burde være annerledes for \verb|ISet|
+\end{itemize}
+
+\framebreak
+
+b) La oss foreløpig anta at vi bruker \verb|ICollection| mer eller mindre direkte som basis for \verb|ISet|. Det vil si at vi har deklarert \verb|ISet| slik:
+\begin{verbatim}
+public interface ISet<E> extends ICollection<E> { ... }
+\end{verbatim}
+
+Implementer tre metoder:
+\begin{verbatim}
+public static void union(ISet<E> a, ISet<E> b) { ... }
+public static void isect(ISet<E> a, ISet<E> b) { ... }
+public static void diff(ISet<E> a, ISet<E> b) { ... }
+\end{verbatim}
+\framebreak
+
+c) Vi kan også lage tester for \verb|ISet| som er felles for alle klasser som implementerer \verb|ISet|.
+
+Lag fire metoder som uttrykker (ved \verb|assertTrue|/\verb|assertEquals|/etc) egenskaper ved metodene i \verb|ISet|, inkludert
+\begin{itemize}
+\item sammenhengen mellom \verb|contains| og en metode som endrer settet
+\item effekten av å legge til samme element flere ganger
+\item to andre egenskaper, f.eks. ved union/isect/diff fra forrige oppgave.
+\end{itemize}
+(Metodene vil typisk ta imot ett eller flere \verb|ISet<E>|, og et eller flere elementer.)
+
+\end{frame}
+
+% Oppg. 5 - h16
+\begin{frame}[fragile, allowframebreaks]
+\frametitle{Oppg. 5 - H16 }
+Datastrukturen kø er en ordnet samling elementer som er slik at elementenehentes ut i rekkefølgen de settes inn i. Når vi henter et element fra køen blir detvanligvis også fjernet fra køen (slik at neste rykker frem). 
+For eksempel, hvis vi setter inn elementene "A", "B", "C" (i den rekkefølgen), vil"A" være det første elementet som blir hentet ut, og vi får ikke tak i "B" før vihar hentet "A". 
+
+Kø-datastrukturen er også kjent som FIFO-liste ? First-In, First-Out. Dette imotsetning til vanlige lister/tabeller, der elementer kan settes inn og hentes ut ivilkårlig rekkefølge (random access), og stack/stabel som er Last-In, First-Out(LIFO).
+\framebreak
+
+
+Lag et grensesnitt \verb|interface IQueue| for køer. Du trenger ikke implementere noe(foreløpig). Velg navn etter hva du selv mener passer.Vi vil at \verb|IQueue| skal ha følgende egenskaper:
+\begin{itemize}
+\item Vi må kunne velge elementtypen \item Vi må ha en metode for å fjerne og returnere neste element fra køen\item Vi må ha en metode for å legge til et element i køen\item Vi vil også kunne vite hvor mange elementer som er lagret i køen.\item Metodene må ha (kortfattet) dokumentasjon, så vi skjønner hvordan deskal brukes
+\end{itemize}
+\end{frame}
+
+% Oppg. 6 - h16
+\begin{frame}[fragile]
+\frametitle{Oppg. 6 - H16 }
+Lag en klasse som implementerer grensesnittet \verb|IQueue| fra forrige oppgave.Du velger selv hvordan du vil gjøre implementasjonen. Om du ønsker kan dugjøre bruk av klasser og metoder fra Java sitt klassebibliotek og/eller ting somvi har brukt i INF101.
+\end{frame}
+
+% Oppg. 7 - h16
+\begin{frame}[fragile]
+\frametitle{Oppg. 7 - H16}
+En prioritetskø er en kø med en ekstra vri -- elementene tilordnes en prioritet,og elementer med høyere prioritet 'sniker' seg frem i køen, slik at køen alltid ersortert slik at høyeste prioritet hentes ut først.
+Prioriteten kan vi avgjøre ved f.eks. å sammenlikne elementene medcompareTo. Vil det stille spesielle krav til elementtypen?
+Lag et oppdatert grensesnitt for prioritetskø, \verb|IPriorityQueue|. Metodene er desamme som før. Ta med eventuelle begrensinger på elementtypen.
+\end{frame}
+
+% Oppg. 8 - h16
+\begin{frame}[fragile]
+\frametitle{Oppg. 8 - H16}
+Lag en klasse som implementerer \verb|IPriorityQueue|. 
+Du kan regne med at om du har to elementer a og b, så har a høyere prioritet(skal foran b i køen) hvis \verb|a.compareTo(b) < 0|.
+Som før kan du bruke metoder og klasser fra Javas standardbibliotek og fraoppgaver/forelesninger/annet INF101-materiell. (Om du ikke helt huskerbruken, beskriv kort hvordan du har tenkt.)
+\end{frame}
+
+
+%Oppg. 11 - v16
+\begin{frame}[fragile]
+\frametitle{Oppg. 11 - V16}
+Lag en klassedeklarasjon for MyFraction som skal implementere \verb|IFraction|.
+Lag feltvariabler for teller og nevner (begge kan være av typen long - lange heltall), og lag enkonstruktør som tar imot teller og nevner.
+I likehet med f.eks. \verb|Position|-klassen tenker vi at brøk-objektene ikke endres etter at de eropprettet.
+Husk å sjekke parameterverdiene til konstruktøren før du bruker dem, om nødvendig.
+\end{frame}
+
+
+%Oppg. 12 - v16
+\begin{frame}[fragile]
+\frametitle{Oppg. 12 - V16}
+En vanlig måte å lage equals-metoden på er på bare sammenlikne feltvariablene parvis - det erdet Eclipse gjør hvis du ber den autogenerere equals.
+Kan du se for deg et mulig problem med å implementere equals for MyFraction med en slik direktesammenlikning av feltvariabler? Forklar kort, gjerne med eksempler.
+\end{frame}
+
+%Oppg. 13 - v16
+\begin{frame}[fragile, allowframebreaks]
+\frametitle{Oppg. 13 - V16}
+Vi kjenner fra matematikken at hvis brøkens teller og nevner har en felles nevner (er delelig påsamme tall), så kan den deles vekk og brøken forenkles. For eksempel, 4/8 = (2*2)/(2*2*2) somforenkles til 1/2; 9/9 forenkles til 1/1, og så videre.
+En annen forenkling er at å snu fortegnet over og under brøkstreken om dersom nevneren ernegativ - da ender man opp med å alltid ha positiv nevner (nevneren kan som kjent ikke være 0).For eksempel kan man forenkle (-1)/(-2) til 1/2 og 1/(-2) til (-1)/2.
+En enkel måte å finne felles nevnere på er Euclids algoritme, som finner den største fellesnevneren til to heltall (dvs. det største heltallet som begge tallene kan deles på). Du kan anta at duhar en implementasjon av denne i metoden long gcd(long a, long b) (gcd - greatest commondivisor).
+ framebreak 
+ 
+For eksempel:
+\begin{verbatim}
+long d = gcd(15, 75); // d = 5, dvs. 15/75 kan forenkles til (15/5)/(75/5) = 3/15d = gcd(3, 15); // d = 3, dvs. 3/15 kan forenkles til 1/5d = gcd(1, 5); // d = 1, dvs. 1/5 kan ikke forenkles mer
+\end{verbatim}
+
+Endre konstruktøren din for MyFraction slik at:
+\begin{itemize}
+\item Nevneren i brøken alltid er et positivt tall\item Telleren og nevneren ikke har noen felles nevnere (unntatt 1, som man alltid kan dele på)
+\end{itemize}
+
+Husk at det kan være flere fellesnevnere mellom teller og nevner, og at du ikke kan forenkle mernår gcd gir 1 som svar.
+\end{frame}
+
+%Oppg. 14 - v16
+\begin{frame}[fragile, allowframebreaks]
+\frametitle{Oppg. 14 - V16}
+For et \verb|MyFraction|-objekt er det nå mange kombinasjoner av verdier for feltvariablene som aldriskal forekomme (nevner=0 er et velkjent eksempel, forenkling av brøken i forrige deloppgave gjørenda flere kombinasjoner umulige).
+Skriv ned en datainvariant (med ord) som beskriver hva som er gyldige tellere/nevnere for en\verb|MyFraction| (gitt representasjonen med forenklet brøk).
+Skriv også en metode \verb|checkState| som sjekker at kombinasjonen av teller og nevner er gyldig / isamsvar med datainvarianten, og kaster en \verb|IllegalStateException| hvis ikke.
+\end{frame}
+
+%Oppg. 15 - v16
+\begin{frame}[fragile]
+\frametitle{Oppg. 15 - V16}
+Gitt at vi nå alltid har en forenklet brøk i MyFraction, blir problemene rundt equals-metoden noeannerledes enn tidligere? Forklar kort.
+\end{frame}
+
+% Oppg 3a, b - v15
+\begin{frame}[fragile, allowframebreaks]
+\frametitle{Oppg. 3 - V15}
+Det klassiske spillet \textit{Space Invaders} ble utviklet av Tomohiro Nishikado i 1978. Spilleren styrer et lite romskip nederst på skjermen, som kan beveges til høyre og venstre, og skyte mot de invaderende romvesene, som kommer på rekke og rad nedover skjermen. Spillet er tapt når romvesene når helt ned på skjermen, eller spilleren blir truffet. Vi skal lage en noe forenklet utgave.
+\framebreak
+
+a) Vi skal modellere alle tingene i spillet ved hjelp av rektangler. Et rektangel har en posisjon (\verb|IPosition|), en bredde og en høyde. Se kode for \verb|IPosition|, \verb|Position| og \verb|IRectangle| i vedlegget. Lag en klasse \verb|Rectangle implements IRectangle|, og definer feltvariabler og konstruktør som tar posisjon, bredde og høyde. Sjekk at bredden og høyden er $\geq 0$, og kast en passende exception om det ikke er tilfelle. 
+\framebreak
+
+b) Rektanglene våre skal være \textit{immutable}, dvs. at de ikke kan endres etter at de eropprettet. Metodene \verb|move()| og \verb|moveTo()| må derfor returnere nye rektangler. Implementerdisse to metodene.
+\framebreak
+
+c) Implementer metodene contains(\verb|IPosition|) og \verb|contains(IRectangle)| i \verb|Rectangle|.
+\framebreak
+
+d) Skriv minst to JUnit-tester for hver av de to \verb|contains()|-metodene i \verb|Rectangle|, somsjekker funksjonaliteten på noen enkle eksempler. Skriv også to tester for \verb|overlaps()|.
+
+\end{frame}
+\end{document}
